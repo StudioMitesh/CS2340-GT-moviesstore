@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
 {% block content %}
 <div class="p-3 mt-4">
   <div class="container">
@@ -23,6 +23,13 @@
                        class="form-control">
               </p>
               <p>
+                <label for="gmail">Email</label>
+                <input id="gmail" type="text"
+                       name="gmail" required
+                       autocomplete="gmail"
+                       class="form-control">
+              </p>
+              <p>
                 <label for="password">Password</label>
                 <input id="password" type="password"
                        name="password" required
@@ -34,6 +41,7 @@
                   class="btn bg-dark text-white">Login
                 </button>
               </div>
+              <a href="{% url 'password_reset' %}"><i>Forgot Password?</i></a>
             </form>
           </div>
         </div>
