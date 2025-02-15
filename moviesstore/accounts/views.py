@@ -7,6 +7,7 @@ from django.contrib.auth.decorators import login_required
 from django.urls import reverse_lazy
 from django.contrib.auth.views import PasswordResetView
 from django.contrib.messages.views import SuccessMessageMixin
+from django.contrib.auth.models import User
 
 @login_required
 def logout(request):
@@ -59,3 +60,10 @@ class ResetPasswordView(SuccessMessageMixin, PasswordResetView):
                       " If you don't receive an email, " \
                       "please make sure you've entered the address you registered with, and check your spam folder."
     success_url = reverse_lazy('accounts.login')
+
+@login_required
+def orders(request):
+    template_data = {}
+    template_data['title'] = 'Orders'
+    template_data['orders'] = request.user.order_set.all()
+    return render(request, 'accounts/orders.html',{'template_data': template_data})
