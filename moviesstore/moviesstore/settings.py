@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 import os
 from pathlib import Path
+import environ
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -90,8 +91,10 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
-EMAIL_HOST_USER='garv.jainn@gmail.com'
-EMAIL_HOST_PASSWORD='kicvcjvznrdcdmzt'
+env = environ.Env()
+environ.Env.read_env(os.path.join(BASE_DIR, '.env')) 
+EMAIL_HOST_USER = env('EMAIL_USER', default='your_default_email@gmail.com')
+EMAIL_HOST_PASSWORD = env('EMAIL_PASSWORD', default='your_default_password')
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
 # Password validation
