@@ -43,14 +43,10 @@
             <p class="card-text">{{ review.comment }}</p>
               {% if user.is_authenticated and user == review.user %}
             <a class="btn btn-primary"
-              href="{% url 'movies.edit_review'
-              id=template_data.movie.id
-              review_id=review.id %}">Edit
+              href="{% url 'movies.edit_review' id=template_data.movie.id review_id=review.id %}">Edit
             </a>
                   <a class="btn btn-danger"
-              href="{% url 'movies.delete_review'
-              id=template_data.movie.id
-              review_id=review.id %}">Delete
+              href="{% url 'movies.delete_review' id=template_data.movie.id review_id=review.id %}">Delete
             </a>
             {% endif %}
           </li>
@@ -64,9 +60,7 @@
                 <div class="card-body">
                   <b class="text-start">Create a review
                     </b><br /><br />
-                  <form method="POST" action=
-                    "{% url 'movies.create_review'
-                    id=template_data.movie.id %}">
+                  <form method="POST" action= "{% url 'movies.create_review' id=template_data.movie.id %}">
                     {% csrf_token %}
                     <p>
                       <label for="comment">Comment:</label>
